@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị</title>
+    <%- include('component/library'); -%>
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="/js/page/admin.js"></script>
+</head>
+
+<body>
+    <%- include('component/header'); -%>
+    <div class="admin-page">
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#account" role="tab"
+                        aria-controls="home" aria-selected="true">Quản lý tài khoản</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#history" role="tab"
+                        aria-controls="profile" aria-selected="false">Lịch sử</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logger-tab" data-toggle="tab" href="#logger" role="tab"
+                        aria-controls="logger" aria-selected="false">Nhật Kí</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="Acount-manager">
+                <div class="row align-center">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Tài khoản người dùng </h1>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-2">
+                                <button class="btn btn-dark create-user" type="button"><a href="/admin/register"
+                                        class="text-light">Thêm Người Dùng</a></button>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-1">
+                                <div class="form-group align-center">
+                                    <label>STT</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Id</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Tên</label>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label>Level</label>
+                                </div>
+                            </div>
+                        </div>
+                        <% result.forEach(function(user, index) { %>
+                        <% var id = user.ID; %>
+                        <% var email = user.email; %>
+                        <% var name = user.name; %>
+                        <% var temp = role[index].Level; %>
+                        <% index++; %>
+                        <div class="form-row">
+                            <div class="col-md-1">
+                                <div class="form-group align-center">
+                                    <label for="" class="distancing item"><%= index %></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="id" value="<%= id %>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input class="form-control" type="email" value="<%= email %>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" value="<%= name %>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <input class="form-control level" type="text" value="<%= temp %>" disabled required>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <!-- Button trigger modal -->
+                                    <button class="btn btn-warning edit" type="button" data-id="<%= id %>" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                                    <button class="btn btn-danger delete" type="button"
+                                        data-id="<%= id %>">Delete</button>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa quyền</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input class="form-control modify" type="text" name="level">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary save" >Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade " id="history" role="tabpanel" aria-labelledby="history">
+                <div class="row align-center">
+                    <div class="col-md-6">
+                        <h1>Lịch Sử</h1>
+                        <form method="post" action="">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="email" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Tên</label>
+                                <input class="form-control" type="text" name="">
+                            </div>
+                            <div class="form-group align-items">
+                                <button class="btn btn-success btn-custom" type="submit">Lưu thay đổi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade " id="logger" role="tabpanel" aria-labelledby="history">
+                <div class="row align-center">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Nhật Kí Users</h1>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-1">
+                                <div class="form-group align-center">
+                                    <label>STT</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Id</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Records</label>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label>Time</label>
+                                </div>
+                            </div>
+                        </div>
+                        <% logger.forEach(function(log, index) { %>
+                        <% var id = log.ID; %>
+                        <% var email = log.email; %>
+                        <% var record = log.Records; %>
+                        <% var time = log.Time; %>
+                        <% index++; %>
+                        <div class="form-row">
+                            <div class="col-md-1">
+                                <div class="form-group align-center">
+                                    <label for="" class="distancing item"><%= index %></label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="id" value="<%= id %>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input class="form-control" type="email" value="<%= email %>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" value="<%= record %>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" value="<%= time %>" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="edit-level w-50 m-auto d-none">
+        <input class="form-control" type="text" name="edit-level">
+    </div>
+    <%- include('component/footer'); -%>
+</body>
+
+</html>

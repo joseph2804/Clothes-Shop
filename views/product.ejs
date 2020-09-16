@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm</title>
+    <%- include('component/library'); -%>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/product-page.css">
+    <script type="module" src="/js/page/productListPage.js"></script>
+</head>
+
+<body>
+    <%- include('component/header'); -%>
+    <!-- <div class="loading">
+        <p>Đang tải...</p>
+    </div> -->
+    <div class="product-list-page row">
+        <section class="menu col-3">
+            <div class="sticky">
+                <div class="filter-content">
+                    <h3 class="title">Lọc Theo</h3>
+                    <ul>
+                        <li>
+                            <div class="form-group">
+                                <input id="all" class="form-control" type="checkbox" name="">
+                                <label for="all">Tất Cả</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <input id="tshirt" class="form-control filter-checkbox" type="checkbox" name="">
+                                <label for="tshirt">Áo Phông</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <input id="shirt" class="form-control filter-checkbox" type="checkbox" name="">
+                                <label for="shirt">Áo Sơmi</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <input id="short" class="form-control filter-checkbox" type="checkbox" name="">
+                                <label for="short">Quần Short</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <input id="dress" class="form-control filter-checkbox" type="checkbox" name="">
+                                <label for="dress">Váy</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <input id="jeans" class="form-control filter-checkbox" type="checkbox" name="">
+                                <label for="jeans">Quần Jeans</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sort-content">
+                    <h3 class="title">Sắp Xếp Theo</h3>
+                    <ul>
+                        <li>
+                            <div class="form-group">
+                                <label for="id">Hàng Mới Nhất</label>
+                                <input id="id" class="form-control sort-radio" type="radio" name="sort">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label for="sold">Hàng Bán Chạy</label>
+                                <input id="sold" class="form-control sort-radio" type="radio" name="sort">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label for="price-up">Giá Tăng Dần</label>
+                                <input id="price-up" class="form-control sort-radio" type="radio" name="sort">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label for="price-down">Giá Giảm Dần</label>
+                                <input id="price-down" class="form-control sort-radio" type="radio" name="sort">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="product-list row col-9">
+            <% result.forEach(product => { %>
+                <% var colorList = product.ProductImage.split(','); %>
+                <% var firstImg = `/images/products/${product.ProductID}_${colorList[0]}.jpg`; %>
+                <% var name = product.ProductName; %>
+                <% var price = product.ProductPrice; %>
+                <% var priceString = `${price / 1000}.000 vnđ`; %>
+                <div class="col-4 product d-none" data-price="<%= price %>"
+                                                  data-sold="<%= product.Sold %>"
+                                                  data-id="<%= product.ID %>"
+                                                  data-type="<%= product.ProductType %>">
+                <%- include('component/product', {
+                    colorList: colorList,
+                    firstImg: firstImg,
+                    name: name,
+                    price: price,
+                    priceString: priceString,
+                    productId: product.ProductID
+                }); %>
+            <% }); %>
+        </section>
+    </div>
+    <%- include('component/footer'); -%>
+</body>
+
+</html>

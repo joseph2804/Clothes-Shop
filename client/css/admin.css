@@ -1,0 +1,28 @@
+.admin-page {
+    padding-top: 95px;
+    padding-bottom: 54px;
+}
+
+.admin-page .align-center {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.admin-page input[type=checkbox] {
+    height: 25px;
+    width: 25px;
+}
+
+.admin-page label.distancing {
+    margin-top: 7px;
+}
+
+.admin-page a {
+    color: #000000;
+}
+
+.admin-page .tab-content {
+    margin-top: 50px;
+    min-height: 350px;
+}

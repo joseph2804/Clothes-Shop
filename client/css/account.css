@@ -1,0 +1,50 @@
+.account-page {
+    padding-top: 95px;
+    padding-bottom: 54px;
+}
+
+.account-page .tab-content .align-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.account-page a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.account-page .btn-custom {
+    background-color: #004f82;
+}
+
+.account-page .btn-custom a {
+    color: #ffffff;
+}
+
+.btn-info a,
+.btn-warning a {
+    color: #ffffff;
+}
+
+.account-page .tab-content {
+    margin-top: 50px;
+    min-height: 350px;
+}
+
+.account-page .nav-tabs {
+    align-items: center;
+}
+
+.account-page .logout {
+    flex-grow: 2;
+    text-align: right;
+}
+
+.account-page .logout p {
+    margin: 0;
+    display: inline-block;
+}
+
+.account-page .logout a {
+    color: #ff1717;
+}

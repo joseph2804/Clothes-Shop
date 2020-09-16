@@ -1,0 +1,22 @@
+<div class="product-info">
+    <a href="/product/detail?productId=<%= productId %>&color=<%= colorList[0] %>" class="get-color">
+        <img src=<%= firstImg %> class="image" alt="">
+    </a>
+    <div class="product-content-info">
+        <div class="product-color">
+            <% colorList.forEach(color => { %>
+                <div class="<%= color === colorList[0] ? 'selected ' : '' %>color"
+                     style="background: #<%= color %>"
+                     data-image="/images/products/<%= productId %>_<%= color %>.jpg"
+                     data-color="<%= color %>"
+                     data-set-url="/product/detail?productId=<%= productId %>&color=<%= color %>">
+                </div>
+            <% }) %>
+        </div>
+        <p class="product-name"><%= name %></p>
+        <p class="product-price"><%= priceString %></p>
+        <a href="/product/detail?productId=<%= productId %>&color=<%= colorList[0] %>" class="get-color">Xem chi tiết</a>
+        <button class="add-to-cart" data-product-id="<%= productId %>" data-product-color="<%= colorList[0] %>">Thêm vào giỏ hàng</button>
+    </div>
+</div>
+</div>

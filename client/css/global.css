@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'Kanit-Regular';
+    src: url("../font/Kanit-Regular.eot");
+    src: url("../font/Kanit-Regular.eot?#iefix") format("embedded-opentype"), url("../font/Kanit-Regular.svg#Kanit-Regular") format("svg"), url("../font/Kanit-Regular.ttf") format("truetype"), url("../font/Kanit-Regular.woff") format("woff"), url("../font/Kanit-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Kanit-Regular';
+}
+
+.btn {
+    transition: color 0;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus {
+    outline: 0!important;
+    box-shadow: 0 0 0 0.2rem transparent!important;
+    border: 0!important;
+    background: #004f82!important;
+}
+
+.btn-success {
+    background: #003457!important;
+}
+
+.form-control {
+    box-shadow: none!important;
+}

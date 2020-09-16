@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài khoản</title>
+    <%- include('component/library'); -%>
+    <link rel="stylesheet" href="/css/account.css">
+    <script src="/js/page/account.js"></script>
+</head>
+
+<body>
+    <%- include('component/header'); -%>
+    <div class="account-page">
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#account" role="tab"
+                        aria-controls="home" aria-selected="true">Thông tin tài khoản</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#order" role="tab"
+                        aria-controls="profile" aria-selected="false">Lịch sử mua hàng</a>
+                </li>
+                <li class="logout">
+                    <p>Xin chào: <b><%= name %></b></p>
+                    <a href="/login/logout">(Đăng xuất)</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>Tài khoản của bạn</h1>
+                            <h5>Bạn có thể chỉnh sửa thông tin và nhấn nút "Lưu thay đổi" bên dưới</h5>
+                            <form method="post" action="/account/changeName">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" class="form-control" type="email" name="email" value="<%= email %>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Tên</label>
+                                    <input id="name" class="form-control" type="text" name="name" value="<%= name %>" data-old-name="<%= name %>">
+                                </div>
+                                <div class="form-group align-items">
+                                    <% if (isAdmin) { %>
+                                        <button class="btn btn-info" type="button"><a href="/admin">Go to admin
+                                                page</a></button>
+                                    <% } %>
+                                    <button class="btn btn-success btn-custom btn-submit" type="submit" disabled>Lưu thay đổi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade distancing" id="order" role="tabpanel" aria-labelledby="order-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Hóa đơn của bạn</h1>
+                            <div class="form-row">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="my-input">Số thứ tự</label>
+                                        <input id="my-input" class="form-control" type="text" readonly
+                                            name="order-number">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label for="my-input">Tên mặt hàng</label>
+                                        <input id="my-input" class="form-control" type="text" readonly
+                                            name="product-name">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="my-input">Số lượng</label>
+                                        <input id="my-input" class="form-control" type="number" name="count" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="my-input">Thành tiền</label>
+                                        <input id="my-input" class="form-control" type="number" name="totals" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group align-items">
+                                <button class="btn btn-success btn-custom" type="button"><a href="/product">Tiếp tục mua
+                                        hàng</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('component/footer'); -%>
+</body>
+</html>

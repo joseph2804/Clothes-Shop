@@ -1,0 +1,67 @@
+.content-wrapper {
+    padding-top: 174px;
+    min-height: 591px;
+}
+
+.content-wrapper .container {
+    padding-top: 2px;
+}
+
+.login-form,
+.align-center {
+    display: flex;
+    justify-content: center;
+}
+
+.button-submit {
+    width: 100%;
+    background: #004f82;
+}
+
+.button-submit:hover {
+    background: #003457;
+}
+
+.suggestion {
+    border-radius: 6px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border: 2px solid #003457;
+}
+
+.perfect-center {
+    padding-top: 32px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.create-account {
+    width: 100%;
+}
+
+.login-form a {
+    color: #004f82;
+}
+
+.login-form a:hover {
+    color: #0066aa;
+    text-decoration: none;
+}
+
+.form-group.password {
+    margin-bottom: 0;
+}
+
+.message {
+    padding-left: 5px;
+    color: #C50000;
+    visibility: hidden;
+}
+
+.message.has-error {
+    visibility: visible;
+}

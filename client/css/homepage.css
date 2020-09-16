@@ -1,0 +1,117 @@
+.home-page {
+    padding: 0;
+}
+
+.home-page .banner {
+    padding-top: 64px;
+}
+
+.home-page .category-list {
+    max-width: 75%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: -50px;
+}
+
+.home-page .category-list .left,
+.home-page .category-list .right {
+    padding: 0;
+    background-color: #000000;
+}
+
+.home-page .category-list .left a,
+.home-page .category-list .right a {
+    display: block;
+    overflow: hidden;
+}
+
+.home-page .category-list .left img,
+.home-page .category-list .right img {
+    width: 100%;
+    transition: all ease-out 1s;
+}
+
+.home-page .category-list .left::before,
+.home-page .category-list .right::before {
+    content: attr(data-name);
+    font-size: 5em;
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    z-index: 1;
+    transition: all ease-in 0.5s;
+    pointer-events: none;
+}
+
+.home-page .category-list .left:hover::before,
+.home-page .category-list .right:hover::before {
+    opacity: 100;
+}
+
+.home-page .category-list .left:hover img,
+.home-page .category-list .right:hover img {
+    transform: scale(1.1);
+    opacity: 40%;
+}
+
+.home-page .new-arrivals,
+.home-page .hot-deals {
+    margin: 0 auto;
+    max-width: 80%;
+    margin-bottom: 40px;
+}
+
+.home-page .new-arrivals .title,
+.home-page .hot-deals .title {
+    font-size: 2.5em;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px 0;
+}
+
+.home-page .new-arrivals .title::before,
+.home-page .hot-deals .title::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #d8d8d8;
+    z-index: 1;
+}
+
+.home-page .new-arrivals .title p,
+.home-page .hot-deals .title p {
+    padding: 0 20px;
+    margin: 0;
+    z-index: 1;
+    background: #fff;
+    display: inline-block;
+    position: relative;
+}
+
+.home-page .new-arrivals .product,
+.home-page .hot-deals .product {
+    padding: 5px;
+}
+
+.home-page .new-arrivals .btn-other,
+.home-page .hot-deals .btn-other {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.btn-other a {
+    display: inline-block;
+    padding: 1em 3em;
+    border-radius: 10px;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    background: #0067a9;
+}

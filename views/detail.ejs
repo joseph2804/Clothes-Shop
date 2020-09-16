@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm </title>
+    <script type="module" src="/js/page/productDetailPage.js"></script>
+    <%- include('component/library'); -%>
+    <link rel="stylesheet" href="/css/detail.css">
+</head>
+<body>
+    <%- include('component/header'); -%>
+    <div class="container-fluid detail-wrapper">
+        <div class="row no-gutters product-info">
+            <% result.forEach(product => { %>
+                <% var productId = product.ProductID; %>
+                <% var colorList = product.ProductImage.split(','); %>
+                <% var firstImg = `/images/products/${product.ProductID}_${productColor}.jpg`; %>
+                <% var name = product.ProductName; %>
+                <% var price = product.ProductPrice; %>
+                <% var priceString = `${price / 1000}.000 vnđ`; %>
+                <% var productDetail = product.ProductDetail; %>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>
+                                Mô Tả
+                            </h3>
+                            <p>
+                                <%= productDetail %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img src=<%= firstImg %> class="image" alt="">
+                </div>
+                <div class="col-md-5">
+                    <div class="product-name">
+                        <h1><%= name %></h1>
+                    </div>
+                    <div class="product-color">
+                        <% colorList.forEach(color => { %>
+                            <div class="<%= color === productColor ? 'selected ' : '' %>color"
+                                 style="background: #<%= color %>"
+                                 data-image="/images/products/<%= product.ProductID %>_<%= color %>.jpg"
+                                 data-url="detail?productId=<%= productId %>&color=<%= color %>"
+                                 data-color="<%= color %>">
+                            </div>
+                        <% }) %>
+                    </div>
+                    <div class="product-price">
+                        <h3><%= priceString %></h3>
+                    </div>
+                    <div class="add-to-cart-btn">
+                        <button class="add-to-cart" data-product-id="<%= productId %>" data-product-color="<%= colorList[0] %>">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <%- include('component/footer'); -%>
+</body>
+</html>

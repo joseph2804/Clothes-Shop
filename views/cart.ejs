@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <%- include('component/library'); -%>
+    <link rel="stylesheet" href="/css/cart.css">
+    <script src="/js/page/cart.js"></script>
+</head>
+
+<body>
+    <%- include('component/header'); -%>
+    <div class="container">
+        <!-- Empty cart notify -->
+        <div class="empty-cart<%= (listItems.length !== 0) ? ' d-none' : ''%>">
+            <div class="notify">
+                <h1>Giỏ hàng trống</h1>
+                <a href="/product">Mua hàng</a>
+            </div>
+        </div>
+
+        <!-- Cart shown -->
+        <div class="cart-shown<%= (listItems.length === 0) ? ' d-none' : ''%>">
+            <h1>Giỏ hàng của bạn</h1>
+            <% var cartTotals = 0%>
+            <% listItems.forEach(item => { %>
+            <% var imgUrl = `/images/products/${item.productId}.jpg`; %>
+            <% var name = item.name; %>
+            <% var price = `${item.price / 1000}.000 vnđ`; %>
+            <% var quantity = item.quantity; %>
+            <% var color = item.productId.split('_')[2]; %>
+            <% var productTotals = item.price * quantity; %> 
+            <% cartTotals += item.totals; %>
+
+            <div class="product-info row" data-product-id="<%= item.productId %>">
+                <div class="image col-2">
+                    <a href="/product/detail?productId=<%= item.productId.split('_' + color)[0] %>&color=<%= color %>"><img src="<%= imgUrl %>" alt=""></a>
+                </div>
+                <div class="info col-8">
+                    <a href="/product/detail?productId=<%= item.productId.split('_' + color)[0] %>&color=<%= color %>" class="name"><%= name %></a>
+                    <p>Giá: <%= price %></p>
+                    <% var stringTotals = price %> 
+                    <% if (productTotals >= 1000000) { %>
+                        <% stringTotals = `${productTotals / 1000000}.000 vnđ`; %>
+                    <% } else { %>
+                        <% stringTotals = `${productTotals / 1000}.000 vnđ`; %>
+                    <% } %>
+                    <div class="color" style="background: #<%= color %>"></div>
+                    <div class="quantity row" data-price="<%= item.price %>">
+                        <div class="control col-3">
+                            <a href="#" class="minus btn-change">
+                                <i class="fas fa-minus"></i>
+                            </a>
+                            <input type="text" value="<%= quantity %>" readonly>
+                            <a href="#" class="plus btn-change">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                        <p class="product-totals col-9" data-total="<%= productTotals %>">Tổng: <%= stringTotals%></p>
+                    </div>
+                </div>
+                <div class="close">
+                    <a href="#" data-toggle="modal" data-target="#removeMessageModal">
+                        <i class="far fa-times-circle icon"></i>
+                    </a>
+                </div>
+            </div>
+            <% }); %>
+
+            <div class="cart-totals" data-cart-totals="<%= cartTotals %>"></div>
+            <div class="summit-cart">
+                <button class="btn btn-success payment">Thanh toán</button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="removeMessageModal" tabindex="-1" role="dialog"
+                aria-labelledby="removeMessageModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="removeMessageModalTitle">Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('component/footer'); -%>
+</body>
+
+</html>
